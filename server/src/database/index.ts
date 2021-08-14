@@ -10,7 +10,7 @@ import addQuestion from './api/addQuestion';
 import addAnswers from './api/addAnswers';
 import evaluateStudent from './api/evaluateStudent';
 
-import { Answer, Student, Question, User } from './types';
+import { Answer, Student, Question, User, Role } from './types';
 
 class Database {
   client: mongodb.MongoClient;
@@ -26,7 +26,7 @@ class Database {
     return register(this.client, this.db, user);
   }
 
-  authenticate(username: string, password: string): Promise<boolean> {
+  authenticate(username: string, password: string): Promise<Role | undefined> {
     return authenticate(this.db, username, password);
   }
 

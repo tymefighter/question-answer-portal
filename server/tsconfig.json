@@ -20,7 +20,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "outDir": "./build",
-    "rootDir": "./src",
     "baseUrl": "./src"
   },
   "include": [
