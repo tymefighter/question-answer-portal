@@ -13,45 +13,58 @@ import evaluateStudent from './api/evaluateStudent';
 import { Answer, Student, Question, User, Role } from './types';
 
 class Database {
-  client: mongodb.MongoClient;
-  db: mongodb.Db;
+  clientDbPromise: Promise<{client: mongodb.MongoClient, db: mongodb.Db}>
 
   constructor() {
-    const { client, db } = initialize();
-    this.client = client;
-    this.db = db;
+    this.clientDbPromise = initialize();
   }
 
   register(user: User): Promise<boolean> {
-    return register(this.client, this.db, user);
+    return this
+      .clientDbPromise
+      .then(({ client, db }) => register(client, db, user));
   }
 
   authenticate(username: string, password: string): Promise<Role | undefined> {
-    return authenticate(this.db, username, password);
+    return this
+      .clientDbPromise
+      .then(({ db }) => authenticate(db, username, password));
   }
 
-  getStudent(username: string): Promise<Student> {
-    return getStudent(this.db, username);
+  getStudent(username: string): Promise<Student | undefined> {
+    return this
+      .clientDbPromise
+      .then(({ db }) => getStudent(db, username));
   }
 
   getStudents(): Promise<Student[]> {
-    return getStudents(this.db);
+    return this
+    .clientDbPromise
+    .then(({ db }) => getStudents(db));
   }
 
-  getQuestions(): Promise<Question[]> {
-    return getQuestions(this.db);
+  getQuestions(): Promise<(Question & { id: string })[]> {
+    return this
+    .clientDbPromise
+    .then(({ db }) => getQuestions(db));
   }
 
   addQuestion(question: Question): Promise<void> {
-    return addQuestion(this.db, question);
+    return this
+    .clientDbPromise
+    .then(({ db }) => addQuestion(db, question));
   }
 
   addAnswers(username: string, ans: Answer[]): Promise<void> {
-    return addAnswers(this.db, username, ans);
+    return this
+    .clientDbPromise
+    .then(({ db }) => addAnswers(db, username, ans));
   }
 
   evaluateStudent(username: string, marks: number): Promise<void> {
-    return evaluateStudent(this.db, username, marks);
+    return this
+    .clientDbPromise
+    .then(({ db }) => evaluateStudent(db, username, marks));
   }
 }
 
