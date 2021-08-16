@@ -1,6 +1,6 @@
-import mongodb from 'mongodb';
+import * as mongodb from 'mongodb';
 
-import { Question } from 'database/types';
+import { Question } from '../types';
 
 export default function getQuestions(
   db: mongodb.Db

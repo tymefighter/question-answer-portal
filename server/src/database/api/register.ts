@@ -1,13 +1,14 @@
-import mongodb from 'mongodb';
+import * as mongodb from 'mongodb';
 
-import { User } from 'database/types';
+import { Student, User } from '../types';
 
-export default function register(
+export default async function register(
   client: mongodb.MongoClient, db: mongodb.Db, user: User
 ) {
   const session = client.startSession();
+  let isRegistrationSuccessful = false;
 
-  return session
+  await session
     .withTransaction(async () => {
       const users = db.collection('users');
 
@@ -15,12 +16,25 @@ export default function register(
       
       if(foundUser === undefined) {
         await users.insertOne(user);
-        return true;
-      }
 
-      else return false;  
+        if(user.role === 'STUDENT') {
+          const students = db.collection('students');
+          const student: Student = {
+            username: user.username,
+            attempted: false,
+            ans: [],
+            evaluated: false,
+            marks: 0
+          };
+          await students.insertOne(student);
+        }
+
+        isRegistrationSuccessful = true;
+      }
     })
     .finally(() => {
       session.endSession();
     });
+
+  return isRegistrationSuccessful;
 };

@@ -1,15 +1,15 @@
-import mongodb from 'mongodb';
+import * as mongodb from 'mongodb';
 
-import { Student, Answer } from 'database/types';
+import { Student, Answer } from '../types';
 
 export default function getStudents(
   db: mongodb.Db, username: string
-): Promise<Student> {
+): Promise<Student | undefined> {
   const students = db.collection('students');
   return students
     .findOne({ username })
     .then(document => {
-      if(document === undefined) throw new Error('Username does not exist');
+      if(document === undefined) return undefined;
 
       return { 
         username: document.username as string,
