@@ -21,9 +21,8 @@ export default async function register(
           const students = db.collection('students');
           const student: Student = {
             username: user.username,
-            attempted: false,
+            status: 'NOT_ATTEMPTED',
             ans: [],
-            evaluated: false,
             marks: 0
           };
           await students.insertOne(student);

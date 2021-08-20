@@ -1,6 +1,6 @@
 import * as mongodb from 'mongodb';
 
-import { Student, Answer } from '../types';
+import { Student, Answer, Status } from '../types';
 
 export default function getStudents(
   db: mongodb.Db, username: string
@@ -13,9 +13,8 @@ export default function getStudents(
 
       return { 
         username: document.username as string,
-        attempted: document.attempted as boolean,
         ans: document.ans as Answer[],
-        evaluated: document.evaluated as boolean,
+        status: document.status as Status,
         marks: document.marks as number
       };
     });
