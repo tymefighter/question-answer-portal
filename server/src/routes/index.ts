@@ -8,6 +8,7 @@ import addAddQuestionRoute from "./addQuestion";
 import addGetQuestionsRoute from "./getQuestions";
 import addGetStudentsRoute from "./getStudents";
 import addGetStudentRoute from './getStudent';
+import addEvaluateStudentRoute from './evaluateStudent';
 
 export default function addRoutes(database: Database, app: express.Express) {
   [
@@ -17,7 +18,8 @@ export default function addRoutes(database: Database, app: express.Express) {
     addAddQuestionRoute,
     addGetQuestionsRoute,
     addGetStudentsRoute,
-    addGetStudentRoute
+    addGetStudentRoute,
+    addEvaluateStudentRoute
   ]
     .forEach(addRoute => addRoute(database, app));
 }
