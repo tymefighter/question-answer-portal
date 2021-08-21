@@ -1,0 +1,70 @@
+@keyframes rotateInnerCircle {
+  0% {
+    transform: translateY(2.1rem) rotate(0deg) translateX(2.9rem);
+  } 
+  100% {
+    transform: translateY(2.1rem) rotate(360deg) translateX(2.9rem);
+  }
+}
+
+@keyframes changeBackgroundColor {
+  0% {
+    background-color: rgb(15, 15, 209);
+  }
+  25% {
+    background-color: rgb(222, 246, 4);
+  }
+  50% {
+    background-color: rgb(255, 66, 41);
+  }
+  75% {
+    background-color: rgb(10, 187, 48);
+  }
+  100% {
+    background-color: rgb(15, 15, 209);
+  }
+}
+
+@keyframes changeColor {
+  0% {
+    color: rgb(15, 15, 209);
+  }
+  25% {
+    color: rgb(222, 246, 4);
+  }
+  50% {
+    color: rgb(255, 66, 41);
+  }
+  75% {
+    color: rgb(10, 187, 48);
+  }
+  100% {
+    color: rgb(15, 15, 209);
+  }
+}
+
+.loadingHeading {
+  margin-top: 8rem;
+  font-size: 4rem;
+  text-align: center;
+  color: grey;
+  animation: changeColor 7s linear 0s infinite normal none running;
+}
+
+.loadingCircle {
+  margin: 0 auto;
+  height: 5rem;
+  width: 5rem;
+  border: 0.8rem solid rgb(185, 229, 255);
+  border-radius: 4rem;
+}
+
+.loadingInnerCircle {
+  margin: auto auto;
+  height: 0.7rem;
+  width: 0.7rem;
+  border-radius: 3rem;
+  animation: 
+    rotateInnerCircle 2s linear 0s infinite normal none running,
+    changeBackgroundColor 7s linear 0s infinite normal none running;
+}
