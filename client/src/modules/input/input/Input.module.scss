@@ -1,0 +1,15 @@
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+
+  > label {
+    font-size: 2rem;
+    width: 30%;
+  }
+
+  > input {
+    font-size: 1.5rem;
+    width: 60%;
+    padding: 0 0.3rem;
+  }
+}
