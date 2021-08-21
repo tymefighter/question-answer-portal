@@ -1,5 +1,12 @@
 import * as express from 'express';
+import * as cors from 'cors';
 
-export default function addMiddleware(app: express.Express) {
-  app.use(express.static('client/build'));
+type Mode = 'PRODUCTION' | 'DEVELOPMENT';
+
+export default function addMiddleware(app: express.Express, mode: Mode) {
+
+  if(mode === 'PRODUCTION')
+    app.use(express.static('client/build'));
+  else
+    app.use(cors());
 }

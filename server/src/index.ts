@@ -12,7 +12,8 @@ const database = new Database();
 const app = express();
 
 // Add Middleware
-addMiddleware(app);
+const isDevelopment = process.argv[2] === '--dev';
+addMiddleware(app, isDevelopment ? 'DEVELOPMENT' : 'PRODUCTION');
 
 // Add Routes
 addRoutes(database, app);
