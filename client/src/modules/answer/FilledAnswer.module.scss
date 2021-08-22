@@ -1,0 +1,15 @@
+.answer {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-size: 1.7rem;
+    width: 5%;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.7rem;
+    width: 90%;
+  }
+}

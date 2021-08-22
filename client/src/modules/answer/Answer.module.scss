@@ -1,0 +1,16 @@
+.answer {
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    font-size: 1.7rem;
+    width: 5%;
+  }
+
+  textarea {
+    margin: 0;
+    padding: 1%;
+    font-size: 1.7rem;
+    width: 88%;
+  }
+}
