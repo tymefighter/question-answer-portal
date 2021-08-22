@@ -2,25 +2,25 @@ import { Route } from 'react-router-dom';
 
 import Login from 'pages/login';
 import Register from 'pages/register';
-import Student from 'pages/Student';
+import Student from 'pages/student';
 import Setter from 'pages/Setter';
 import EvaluateStudent from 'pages/EvaluateStudent';
 import Students from 'pages/Students';
 
 export const NO_AUTH_ROUTES = [
-  <Route path="/register" component={Register} />,
-  <Route path="/" component={Login} />
+  <Route key="REGISTER" path="/register" component={Register} />,
+  <Route key="LOGIN" path="/" component={Login} />
 ];
 
 export const STUDENT_ROUTES = [
-  <Route path="/" component={Student} />
+  <Route key="STUDENT" path="/" component={Student} />
 ];
 
 export const SETTER_ROUTES = [
-  <Route path="/" component={Setter} />
+  <Route key="SETTER" path="/" component={Setter} />
 ];
 
 export const EVALUATOR_ROUTES = [
-  <Route path="/:student" component={EvaluateStudent} />,
-  <Route path="/" component={Students} />,
+  <Route key="EVALUATE_STUDENT" path="/:student" component={EvaluateStudent} />,
+  <Route key="STUDENTS" path="/" component={Students} />,
 ];
