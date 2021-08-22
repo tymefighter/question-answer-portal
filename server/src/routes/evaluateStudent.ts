@@ -12,9 +12,7 @@ export default function addEvaluateStudentRoute(database: Database, app: express
       (req: RequestWithUserInfo, res) => {
         const { username, marks } = req.body;
 
-        if(typeof username !== 'string' 
-          || typeof marks !== 'string'
-          || !/\d/.test(marks)) {
+        if(typeof username !== 'string' || typeof marks !== 'number') {
           res
             .status(400)
             .end('Request body must contain the user\'s username and marks');
@@ -22,7 +20,7 @@ export default function addEvaluateStudentRoute(database: Database, app: express
         }
 
         database
-          .evaluateStudent(username, parseInt(marks))
+          .evaluateStudent(username, marks)
           .then(() => {
             res
               .status(200)
