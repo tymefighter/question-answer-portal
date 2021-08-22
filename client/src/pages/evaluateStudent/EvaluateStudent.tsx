@@ -1,11 +1,9 @@
-// Library
-import React from 'react';
-
 // Components
 import Loading from 'modules/loading';
 import Question from 'modules/question';
 import { FilledAnswer } from 'modules/answer';
 import MarksForm from './components/MarksForm';
+import Navbar from 'modules/navbar';
 
 // Hooks
 import useStudent from 'modules/request/hooks/useStudent';
@@ -30,24 +28,36 @@ export default function EvaluateStudent() {
     return <Loading />;
 
   return (
-    <div className={styles.container}>
-      <h1>Student: {student.username}</h1>
-      {student.status === 'EVALUATED' && (
-        <p className={styles.marks}> Marks: {student.marks} </p>
-      )}
-      {questions.map(question => (
-        <div className={styles.questionContainer} key={'QUES_' + question.id}>
-          <Question question={question.question} />
-          <FilledAnswer 
-            answer={
-              student.ans
-                .find(answer => answer.questionId === question.id)
-                ?.answer ?? ''
-            } 
-          />
-        </div>
-      ))}
-      {student.status === 'ATTEMPTED' && <MarksForm studentUsername={username} />}
-    </div>
+    <>
+      <Navbar
+        leftLinks={[{
+          label: 'Back',
+          link: '/'
+        }]}
+        rightLinks={[{
+          label: 'Logout',
+          link: '/logout'
+        }]}
+      />
+      <div className={styles.container}>
+        <h1>Student: {student.username}</h1>
+        {student.status === 'EVALUATED' && (
+          <p className={styles.marks}> Marks: {student.marks} </p>
+        )}
+        {questions.map(question => (
+          <div className={styles.questionContainer} key={'QUES_' + question.id}>
+            <Question question={question.question} />
+            <FilledAnswer 
+              answer={
+                student.ans
+                  .find(answer => answer.questionId === question.id)
+                  ?.answer ?? ''
+              } 
+            />
+          </div>
+        ))}
+        {student.status === 'ATTEMPTED' && <MarksForm studentUsername={username} />}
+      </div>
+    </>
   )
 }

@@ -5,6 +5,7 @@ import React from 'react';
 import Loading from 'modules/loading';
 import AttemptingStudent from './components/AttemptingStudent';
 import AttemptedStudent from './components/AttemptedStudent';
+import Navbar from 'modules/navbar';
 
 // Context
 import UserContext from 'context/UserContext';
@@ -51,6 +52,12 @@ export default function Student() {
 
   return (
     <>
+      <Navbar
+        rightLinks={[{
+          label: 'Logout',
+          link: '/logout'
+        }]}
+      />
       <h1 className={styles.heading}>{heading}</h1>
       {marksElement}
       {student.status === 'NOT_ATTEMPTED' ?

@@ -6,6 +6,7 @@ import UserContext from 'context/UserContext';
 
 // Components
 import { Input, Selector } from 'modules/input';
+import Navbar from 'modules/navbar';
 
 // Styles
 import styles from './Register.module.scss';
@@ -41,6 +42,12 @@ export default function Register() {
 
   return (
     <>
+      <Navbar
+        rightLinks={[{
+          label: 'Logout',
+          link: '/logout'
+        }]}
+      />
       <h1 className={styles.heading}>Register</h1>
       <div className={styles.inputContainer}>
         <Input  

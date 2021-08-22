@@ -1,5 +1,6 @@
 // Components
 import Loading from 'modules/loading';
+import Navbar from 'modules/navbar';
 
 // Hooks
 import useStudents from 'modules/request/hooks/useStudents';
@@ -20,25 +21,33 @@ export default function Students() {
     return <Loading />;
 
   return (
-    <table className={styles.students}>
-      <caption>Students</caption>
-      <thead>
-        <tr>
-          <td>Username</td>
-          <td>Status</td>
-          <td>Marks</td>
-        </tr>
-      </thead>
-      <tbody>
-        {students.map(student => (
-          <tr key={student.username} 
-            onClick={() => void history.push(`/${student.username}`)}>
-            <td>{student.username}</td>
-            <td>{student.status}</td>
-            <td>{student.status === 'EVALUATED' ? student.marks : 'NA'}</td>
+    <>
+      <Navbar
+        rightLinks={[{
+          label: 'Logout',
+          link: '/logout'
+        }]}
+      />
+      <table className={styles.students}>
+        <caption>Students</caption>
+        <thead>
+          <tr>
+            <td>Username</td>
+            <td>Status</td>
+            <td>Marks</td>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {students.map(student => (
+            <tr key={student.username} 
+              onClick={() => void history.push(`/${student.username}`)}>
+              <td>{student.username}</td>
+              <td>{student.status}</td>
+              <td>{student.status === 'EVALUATED' ? student.marks : 'NA'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }
