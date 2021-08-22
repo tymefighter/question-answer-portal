@@ -32,6 +32,9 @@ export default function Register() {
   const history = useHistory();
   const { setUser } = React.useContext(UserContext);
 
+  if(error) 
+    throw new Error(error);
+
   const onRegister = React.useCallback(() => {
     register(username, password, role, history, setUser, setError);
   }, [username, password, role, history, setUser, setError]);
