@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import Login from 'pages/login';
 import Register from 'pages/register';
 import Student from 'pages/student';
-import Setter from 'pages/Setter';
+import Setter from 'pages/setter';
 import EvaluateStudent from 'pages/EvaluateStudent';
 import Students from 'pages/Students';
 
