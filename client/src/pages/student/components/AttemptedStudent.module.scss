@@ -1,0 +1,12 @@
+.container {
+  padding: 0 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.questionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
