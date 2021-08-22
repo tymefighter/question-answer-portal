@@ -1,10 +1,12 @@
 interface Question {
+  id: string;
   question: string;
 };
 
 export const isQuestion = (question: any): question is Question => {
   return (
     typeof question === 'object'
+    && typeof question.id === 'string'
     && typeof question.question === 'string'
   );
 }
