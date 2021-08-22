@@ -1,0 +1,31 @@
+.students {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+
+  caption {
+    font-size: 3rem;
+  }
+
+  thead {
+    font-size: 2rem;
+  }
+
+  tbody {
+    font-size: 1.7rem;
+    tr {
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(216, 215, 215);
+      }
+
+      &:active {
+        background-color: rgb(180, 179, 179);
+      }
+    }
+  }
+
+  td {
+    border: 2px solid black;
+  }
+}
