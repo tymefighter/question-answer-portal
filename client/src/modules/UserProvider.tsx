@@ -25,10 +25,16 @@ export default function UserProvider({ children }: UserProviderProps) {
   const setUserAlongWithSessionStorage = (user : User) => {
     setUser(user);
     sessionStorage.setItem('user', JSON.stringify(user));
-  } 
+  }
+  
+  const removeUser = () => {
+    setUser(undefined);
+    sessionStorage.removeItem('user');
+    console.log(user, sessionStorage.getItem('user'))
+  }
 
   return (
-    <UserContext.Provider value={{ user, setUser: setUserAlongWithSessionStorage }}>
+    <UserContext.Provider value={{ user, setUser: setUserAlongWithSessionStorage, removeUser }}>
       { children }
     </UserContext.Provider>
   );
